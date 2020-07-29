@@ -15,7 +15,7 @@
 # Variables
 REGION="eu-west-2"
 DATE="$(date +'%Y-%m-%d')"
-LOG="log/costs_$CLUSTER.log"
+LOG="log/costs_$CLUSTERNAME.log"
 EXCLUDE_NAMES="gateway|gw|GW|cadmin|chead|monitor"
 
 # Functions
