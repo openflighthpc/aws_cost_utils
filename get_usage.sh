@@ -18,9 +18,6 @@ DATE="$(date +'%Y-%m-%d')"
 LOG="log/usage_$CLUSTER.log"
 EXCLUDE_NAMES="gateway|gw|GW|cadmin|chead|monitor"
 
-# Functions
-function join_by_comma { printf -- "%s, " "$1" |sed -E 's/(.*),/\1/' ; }
-
 # Gather info
 INSTANCES="$(aws ec2 describe-instances --region $REGION --output text --query 'Reservations[*].Instances[*].[Tags[?Key==`Name`]|[0].Value, InstanceId, InstanceType, State.Name]')"
 
@@ -45,4 +42,4 @@ for type in $INSTANCE_TYPES ; do
     fi
 done
 
-echo "[$DATE] $(join_by_comma "${details[@]}")" >> $LOG
+echo "[$DATE] $(echo ${details[@]} |sed -E 's/(.*),/\1/')" >> $LOG
