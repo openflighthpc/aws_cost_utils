@@ -8,7 +8,7 @@ if [ -z "$SLACK_TOKEN" ] ; then
     exit 1
 fi
 
-. load_conf.sh $config
+. $DIR/load_conf.sh $config
 
 # Get costs
 TODAY=$(date +'%Y-%m-%d')

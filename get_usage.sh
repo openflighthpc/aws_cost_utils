@@ -9,13 +9,15 @@
 # nodes are constant resources.
 #
 
+DIR=$(cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd)
+
 # Load account configuration
-. load_conf.sh $1
+. $DIR/load_conf.sh $1
 
 # Variables
 REGION="eu-west-2"
 DATE="$(date +'%Y-%m-%d')"
-LOG="log/usage_$CLUSTER.log"
+LOG="$DIR/log/usage_$CLUSTER.log"
 EXCLUDE_NAMES="gateway|gw|GW|cadmin|chead|monitor"
 
 # Gather info
