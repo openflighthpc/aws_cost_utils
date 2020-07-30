@@ -21,12 +21,16 @@ for config in /root/aws_daily_costs/config/* ; do
     export CU_FLAT=$(ruby -e "puts (ENV['COSTLONG'].to_f * 10).ceil")
     CU_RISK=$(ruby -e "puts (ENV['CU_FLAT'].to_f * 1.25).ceil")
 
+    USAGE=$(grep "^\[$YESTERYESTERDAY\]" log/usage_$CLUSTER.log)
     
 msg="
 :moneybag: Usage for $YESTERYESTERDAY :moneybag:\n
 *USD:* $COST \n
 *Compute Units (Flat):* $CU_FLAT \n
-*Compute Units (Risk):* $CU_RISK"
+*Compute Units (Risk):* $CU_RISK\n
+$(if [ ! -z $USAGE ] ; then
+echo "*Usage:* $USAGE"
+fi)"
 
     cat <<EOF | curl --data @- -X POST -H "Authorization: Bearer $SLACK_TOKEN" -H 'Content-Type: application/json' https://slack.com/api/chat.postMessage
 {
