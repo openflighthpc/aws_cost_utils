@@ -19,7 +19,7 @@ LOG="log/usage_$CLUSTERNAME.log"
 EXCLUDE_NAMES="gateway|gw|GW|cadmin|chead|monitor"
 
 # Functions
-function join_by_comma { local IFS=","; shift; echo "$*" |sed 's/,/, /g'; }
+function join_by_comma { printf -- "%s, " "$1" |sed -E 's/(.*),/\1/' ; }
 
 # Gather info
 INSTANCES="$(aws ec2 describe-instances --region $REGION --output text --query 'Reservations[*].Instances[*].[Tags[?Key==`Name`]|[0].Value, InstanceId, InstanceType, State.Name]')"
