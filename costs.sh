@@ -29,7 +29,7 @@ msg="
 *USD:* $COST \n
 *Compute Units (Flat):* $CU_FLAT \n
 *Compute Units (Risk):* $CU_RISK\n
-$(if [ ! -z $USAGE ] ; then
+$(if [ ! -z "$USAGE" ] ; then
 echo "*Usage:* $USAGE"
 fi)"
 
