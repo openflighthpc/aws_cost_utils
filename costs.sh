@@ -22,7 +22,7 @@ COST=$(ruby -e "printf '%.2f', ENV['COSTLONG'].to_f.round(2)")
 export CU_FLAT=$(ruby -e "puts (ENV['COSTLONG'].to_f * 10).ceil")
 CU_RISK=$(ruby -e "puts (ENV['CU_FLAT'].to_f * 1.25).ceil")
 
-USAGE=$(grep "^\[$YESTERYESTERDAY\]" log/usage_$CLUSTER.log)
+USAGE=$(grep "^\[$YESTERYESTERDAY\]" $DIR/log/usage_$CLUSTER.log)
     
 msg="
 :moneybag: Usage for $YESTERYESTERDAY :moneybag:\n
